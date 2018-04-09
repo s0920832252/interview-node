@@ -25,8 +25,8 @@ int (*a[10])(int); // 一個有10個指標的陣列，該指標指向一個函�
 關鍵字 volatile 等等判讀方式相同。
 ```
   
+      
     
-  
 # 變數範圍和生命周期（關鍵字 static）
 ```
 1. local 變數 : local 變數僅活在該函式內，存放位置在 stack 或 heap 記憶體中。
@@ -42,8 +42,9 @@ Global : 包含 BSS (未初始化的靜態變數)、data section (全域變數�
 ```
 > ![](../img/image4.png)
 > ![](../img/image5.png)    
-
-
+  
+  
+    
 # call by value, call by reference
 ```
 1. call by value : 最常見的函式寫法，呼叫者和被呼叫者的變數各自佔有記憶體，將參數複製再傳給函式。
@@ -74,8 +75,9 @@ const 通常表示只可讀取不可寫入的變數，常用來宣告常數。�
       
 # 巨集 #define
 > ![](../img/image6.png)   
-     
        
+  
+     
 # 引入防護和條件編譯
 > ![](../img/image7.png)
   
@@ -104,7 +106,36 @@ volatile 常見的應用：
 修飾多執行緒 (multi-threaded) 的全域變數。
 設備的硬體暫存器 (如狀態暫存器)
 ```
-
+  
+  
+# 記憶體複製
+> ![](../img/image8.jpg)  
+  
+  
+    
+# 字串複製
+> ![](../img/image9.jpg)
+  
+  
+  
+# 結構 struct  
+> ![](../img/image10.jpg)
+  
+  
+  
+# 重新定義型態名稱 typedef 
+> ![](../img/image11.jpg)
+  
+  
+  
+# 列舉 enum
+> ![](../img/image12.jpg)
+  
+  
+  
+# 共用結構 union
+> ![](../img/image13.jpg)
+  
       
         
 # 寫出將會印出的兩行字串
