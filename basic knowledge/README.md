@@ -100,7 +100,7 @@ Deadlock Def：
 Deadlock vs Starvation
 
 Deadlock           | Starvation  |
----------------|:--------|:------------------------
+---------------|--------
 一組processes形成circular waiting，導致processes無法往下執行|某(些)processes形成infinite Blocking
 ∵長期無法取得完成工作所需資源    | 
 不允許資源preemptive    | 易發生在不公平、preemptive的環境    
