@@ -244,3 +244,49 @@ size of char = 1
 
 
 
+6.
+請試著寫出下面代碼的輸出:
+
+view plaincopy to clipboardprint?
+#include 
+#include 
+
+int main() 
+{ 
+char strAry[] = "This is string"; 
+char *aryPtr = strAry; 
+int *intPtr = (int*)strAry; 
+printf("\t[Line01] strAry=%s\n", strAry); 
+printf("\t[Line02] aryPtr=%s\n", aryPtr); 
+//printf("\t[LineX] *aryPtr=%s\n", *aryPtr); // Segment fault 
+printf("\t[Line03] sizeof(aryPtr)=%d\n", sizeof(aryPtr)); 
+printf("\t[Line04] sizeof(*aryPtr)=%d\n", sizeof(*aryPtr)); 
+printf("\t[Line05] *aryPtr='%c'\n", *aryPtr); 
+printf("\t[Line06] *aryPtr+1='%c'\n", *aryPtr+1); 
+printf("\t[Line07] *(aryPtr+1)='%c'\n", *(aryPtr+1)); 
+printf("\t[Line08] sizeof(intPtr)=%d\n", sizeof(intPtr)); 
+printf("\t[Line09] sizeof(*intPtr)=%d\n", sizeof(*intPtr)); 
+printf("\t[Line10] intPtr=%s\n", intPtr); 
+//printf("\t[LineX] *intPtr=%s\n", *intPtr); // Segment fault 
+printf("\t[Line11] *intPtr='%c'\n", *intPtr); 
+printf("\t[Line12] *intPtr+1='%c'\n", *intPtr+1); 
+printf("\t[Line13] *(intPtr+1)='%c'\n", *(intPtr+1)); 
+return 0; 
+} 
+
+Sol:
+
+[Line01] strAry=This is string # 字串陣列 char[] ="..." 會自動加上 NULL 到結尾.
+[Line02] aryPtr=This is string # 同上, 只是把 aryPtr 指標指向 strAry 的位置. strAry 本身也是個指標.
+[Line03] sizeof(aryPtr)=4 # 指標的大小根據系統是 32bit (4byte) 或是 64bit(8bypte) 有所不同.
+[Line04] sizeof(*aryPtr)=1 # char 的大小為 1 byte.
+[Line05] *aryPtr='T' # 指向字串中第一個字元 'T'
+[Line06] *aryPtr+1='U' # char 'T' + 1=char 'U'. -> ASCII 'T'=84. 84+1=85=ASCII 'U'.
+[Line07] *(aryPtr+1)='h' # 將 aryPtr 指標移動一個 char 的位置 (1 個 byte 的距離), 即是字串的第二個字元 'h'.
+[Line08] sizeof(intPtr)=4 # 同 Line03
+[Line09] sizeof(*intPtr)=4 # int 類型的大小為 4 byte.
+[Line10] intPtr=This is string # 雖然用 int* 指定 pointer 類型, 但是在 printf 使用 '%s', 故還是打印出字串出來.
+[Line11] *intPtr='T' # 指向字串中第一個字元 'T'.
+[Line12] *intPtr+1='U' # 同 Line6
+[Line13] *(intPtr+1)=' ' # 因為 指標類型為 int, 故移動一個位置為 4 byte, 所以指向第 0+4 =4 位置上的字元, 即字串的第五個字元 (從 0 開始).
+
