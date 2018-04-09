@@ -12,6 +12,7 @@
   我興趣廣泛，喜歡學習，除了是軟體工程師，依據任務的需求也可以是前端工程師或者後端工程師甚至是資料分析師。　－＞多型
 ```
 
+
 # Overload和Override的區別。Overloaded的方法是否可以改變返回值的類型? 
 ```
 Overload發生在同一類別裡，Override發生在繼承關係間。 
@@ -22,6 +23,7 @@ Overloading : 在同一個函數內，使用多個相同名稱但輸入參數不
 Overriding :  繼承父類別後，改寫父類別的方法。　＝　忤逆家長 (也就是ride在家長頭上太over的意思)。
 ```
 
+
 # what is different between mutex and semaphore?
 ```
 Mutex是一把鑰匙，一個人拿了就可進入一個房間，出來的時候把鑰匙交給隊列的第一個。一般的用法是用於串行化對critical section代碼的訪問，保證這段代碼不會被並行的運行。
@@ -29,11 +31,14 @@ Mutex是一把鑰匙，一個人拿了就可進入一個房間，出來的時候
 
 Semaphore是一件可以容納N人的房間，如果人不滿就可以進去，如果人滿了，就要等待有人出來。對於N=1的情況，稱為binary semaphore。一般的用法是，用於限制對於某一資源的同時訪問。
 ```
+
+
 # Compare stack and queue
 ```
 佇列(Queue)是用先進先出的方式處理物件的集合，例如到銀行排隊，先排的人先處理；
 而堆疊(Stack )是後進先出的集合，例如玩撲克牌排遊戲時，發牌時是從整疊的最上一張拿取。
 ```
+
 
 # write a function that can calculate 1*2+2*3+.....+(n-1)*n
 ```
@@ -85,38 +90,38 @@ Thread ：在同一個Process底下，有許多自己的分身，就是Thread，
          Avoid(預防) 或 避免(Prevent)兩種方式，破除以上四種其中一種即可。
          => 恐龍本第七章
 ```
-
+  
+   
 # Deadlock Def
 ```
 一組processes陷入互相等待的情況(Circular waiting)
 造成processes接無法往下執行，使得CPU utilization及Throughput大幅降低
 ```
-
-
+  
+   
 # Deadlock vs Starvation
 Deadlock           | Starvation  
 ---------------|--------
 一組processes形成circular waiting，導致processes無法往下執行|某(些)processes形成infinite Blocking ∵長期無法取得完成工作所需資源    
 不允許資源preemptive    | 易發生在不公平、preemptive的環境    
-CPU utilization及Throughput會大幅下降    | 與此無關聯    
-
-
+CPU utilization及Throughput會大幅下降    | 與此無關聯    
+  
+   
 # Deadlock成立的四個必要條件
 ```
-Mutual exclusion(互斥)
-Def：
+Mutual exclusion(互斥)：
 資源在同一時間內，至多只允許一個process使用(不允許≥2個processes同時使用)
 其它欲使用此resource的process必須wait，直到該process釋放resource為止
 eg. printer、Disk、CPU etc.
 eg. 不具mutual exclusion→Read-only File
-Hold & wait(持有並等待) (Partial Allocation)
-Def：
+
+Hold & wait(持有並等待) (Partial Allocation)：
 process持有部分資源且又在等待其它processes所持有的資源
-No preemption(不可強取豪奪)
-Def：
+
+No preemption(不可強取豪奪):
 process不可搶奪其它waiting process所持有的資源，除非其自願釋放
-Circular waiting(循環等待)
-Def：
+
+Circular waiting(循環等待):
 存在一組process
 P0→P1→P2→...→Pn→P0
 P0~Pn形成Circular waiting
