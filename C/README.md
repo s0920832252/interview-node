@@ -34,6 +34,19 @@ int ownstrcmp(char a[], char b[])
 }   
 ```
 
+
+
+# 請問以下何者為不合法的變數名稱?
+##### 1. _aB        2. AB        3. 2ab        4. A_B        5. Black        6.  Break
+```
+Ans: 3
+(Note : 第六選項  "Break" 因為是大寫 B 與 "break"被視為兩個不同的變數，故雖不建議使用，但依然被視為合法變數)
+1. 變數名稱可為任何英文與數字的組合 (包含底線 __ )
+2. "保留字" 不可為變數名稱 如: goto 、   break 、   case ....等等
+```
+> ![](../img/umage3.png)
+
+
 # Compare array and list
 ```
 std::array is just a class version of the classic C array. 
