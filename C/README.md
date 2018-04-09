@@ -164,6 +164,7 @@ extern volatile int gData;
 ```
 
 # 以下輸出為何?
+```
 printf("size of BYTE = %d\n
   	size of float = %d\n
    	size of unsigned int = %d\n
@@ -178,6 +179,7 @@ printf("size of BYTE = %d\n
   	,sizeof(double)
   	,sizeof(unsigned char)
   	,sizeof(char));
+```
 ```
 size of BYTE = 1
 size of float = 4
