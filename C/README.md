@@ -1,5 +1,11 @@
 # 寫出將會印出的兩行字串
-![](../img/image1.jpg)
+> ![](../img/image1.jpg)
+```
+答案為:
+第一行字串為 : 0113234
+第二行字串為 : 0123456
+```
+> ![](../img/image2.png)
 
 # write your own strcmp 
 ``` 
