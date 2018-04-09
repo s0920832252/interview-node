@@ -1,4 +1,5 @@
 1. write your own strcmp 
+
 ``` 
 int ownstrcmp(char a[], char b[])  
 {   
@@ -14,10 +15,15 @@ int ownstrcmp(char a[], char b[])
 ```
 
 2. Compare array and list
-```
-std::array is just a class version of the classic C array. That means its size is fixed at compile time and it will be allocated as a single chunk (e.g. taking space on the stack). The advantage it has is slightly better performance because there is no indirection between the object and the arrayed data.  
 
-std::vector is a small class containing pointers into the heap. (So when you allocate astd::vector, it always calls new.) They are slightly slower to access because those pointers have to be chased to get to the arrayed data... But in exchange for that, they can be resized and they only take a trivial amount of stack space no matter how large they are.
+```
+std::array is just a class version of the classic C array. 
+That means its size is fixed at compile time and it will be allocated as a single chunk (e.g. taking space on the stack).
+The advantage it has is slightly better performance because there is no indirection between the object and the arrayed data.  
+
+std::vector is a small class containing pointers into the heap. (So when you allocate astd::vector, 
+it always calls new.) They are slightly slower to access because those pointers have to be chased to get to the arrayed data... 
+But in exchange for that, they can be resized and they only take a trivial amount of stack space no matter how large they are.
 ```
 
 3. Explain Static and volatile
