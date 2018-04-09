@@ -107,6 +107,24 @@ CPU utilization及Throughput會大幅下降    | 與此無關聯
 
 
 	
-	
+9.
+Deadlock成立的四個必要條件
+Mutual exclusion(互斥)
+Def：
+資源在同一時間內，至多只允許一個process使用(不允許≥2個processes同時使用)
+其它欲使用此resource的process必須wait，直到該process釋放resource為止
+eg. printer、Disk、CPU etc.
+eg. 不具mutual exclusion→Read-only File
+Hold & wait(持有並等待) (Partial Allocation)
+Def：
+process持有部分資源且又在等待其它processes所持有的資源
+No preemption(不可強取豪奪)
+Def：
+process不可搶奪其它waiting process所持有的資源，除非其自願釋放
+Circular waiting(循環等待)
+Def：
+存在一組process
+P0→P1→P2→...→Pn→P0
+P0~Pn形成Circular waiting
 	
 	
