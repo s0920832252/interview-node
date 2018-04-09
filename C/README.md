@@ -1,12 +1,9 @@
-### write your own strcmp 
-
-1.
+1. write your own strcmp 
 int ownstrcmp(char a[], char b[])
 {
    int i = 0;
    while( a[i] == b[i] )  
    {
-
       if( a[i] == '\0' ) 
         return 0;
       ++i;
@@ -14,117 +11,45 @@ int ownstrcmp(char a[], char b[])
    return  ( a[i] < b[i]) ? 1 : -1;
 }
 
-2.
-Compare array and list
+2. Compare array and list
+std::array is just a class version of the classic C array. That means its size is fixed at compile time and it will be allocated as a single chunk (e.g. taking space on the stack). The advantage it has is slightly better performance because there is no indirection between the object and the arrayed data.  
 
-std::array is just a class version of the classic C array. That means its size is fixed at compile time and it will be allocated as a single chunk (e.g. taking space on the stack). The advantage it has is slightly better performance because there is no indirection between the object and the arrayed data.
 std::vector is a small class containing pointers into the heap. (So when you allocate astd::vector, it always calls new.) They are slightly slower to access because those pointers have to be chased to get to the arrayed data... But in exchange for that, they can be resized and they only take a trivial amount of stack space no matter how large they are.
 
 
-3.
-Explain Static and volatile
-
-
-Static:
+3. Explain Static and volatile
+#Static:
 
 (1) 修飾檔案中的global variable：
-
-使這個變數只有在本檔案中才可以被使用，相同專案中的其他檔案看不到它的存在。
-
-補：放在function前也有一樣的作用。
+> 使這個變數只有在本檔案中才可以被使用，相同專案中的其他檔案看不到它的存在。
+> 補：放在function前也有一樣的作用。
 
 (2) 修飾function中的local variable：
-
-此變數一旦經過初始化就會一直存在直到程式結束，跳出function時它也會保持當下的值，
-
-ex. 可用來計算同一個function被呼叫的次數。
-
-只會被初始化一次，並且只有進入function中才看得到這個變數 !!
+> 此變數一旦經過初始化就會一直存在直到程式結束，跳出function時它也會保持當下的值，
+> ex. 可用來計算同一個function被呼叫的次數。
+> 只會被初始化一次，並且只有進入function中才看得到這個變數 !!
 
 (3) 修飾class中的member variable和function：
-
-variable：會使同一個class的所有實體共用同一個member variable，
-
-或者說這個member variable在同一個class的所有實體擁有相同的值。
-
-一樣只會初始化一次，甚至不需要實體就可呼叫。
+> variable：會使同一個class的所有實體共用同一個member variable，或者說這個member variable在同一個class的所有實體擁有相同的值。
+> 一樣只會初始化一次，甚至不需要實體就可呼叫。
 
 function：static member function不屬於任何一個實體，也是不需要實體就可呼叫，
+>> 但它只能操作static member variables而已。他們都透過 :: 運算子來呼叫，表示屬於某一個class但不屬於任何實體。 ex. A::x 也可以透過實體用
 
-但它只能操作static member variables而已。
+#Volatile:
 
-他們都透過 :: 運算子來呼叫，表示屬於某一個class但不屬於任何實體。 ex. A::x
+> 被volatile修飾的變數代表它的值有可能因為編譯器不知道的因素修改，所以告訴編譯器不要對它涉及的地方做最佳化，並在每次操作它的時候都去讀取該變數實體位址上最新的值，而不是讀取CPU暫存器上的值，一般的變數可能因為剛剛讀取過而放在CPU暫存器上使動作變快。
 
-也可以透過實體用 . 運算子呼叫，但觀念上比較不好！
-
-
-Volatile:
-
-被volatile修飾的變數代表它的值有可能因為編譯器不知道的因素修改，
-
-所以告訴編譯器不要對它涉及的地方做最佳化，
-
-並在每次操作它的時候都去讀取該變數實體位址上最新的值，
-
-而不是讀取CPU暫存器上的值，
-
-一般的變數可能因為剛剛讀取過而放在CPU暫存器上使動作變快。
-
-例子：
-
-(1) 硬體暫存器，如狀態暫存器。
-
-(2) 多執行緒所共用的全域變數。
-
-(3) 中斷服務函式 (Interrupt Service Rountie，ISR)所使用的全域變數。
+>> 例子：
+>> (1) 硬體暫存器，如狀態暫存器。
+>> (2) 多執行緒所共用的全域變數。
+>> (3) 中斷服務函式 (Interrupt Service Rountie，ISR)所使用的全域變數。
 
 囧~ 我只能了解多執行緒的情況，其他兩個例子都沒概念。
 
-陷阱：
 
-假設有個函數
-
-int square(volatile int *ptr) {
-
-return *ptr * *ptr;
-
-}
-
-則編譯器可能會把它解讀成下列code
-
-int square(volatile int *ptr) {
-
-int a,b;
-
-a = *ptr;
-
-b = *ptr;
-
-return a * b;
-
-}
-
-實際上產生的可能不是平方值，所以改成下列方式才不會出錯
-
-int square(volatile int *ptr) {
-
-int a;
-
-a = *ptr;
-
-return a * a;
-
-}
-
-C/C++ 的volatile
 C/C++中的volatile使用時機?
-
-.不知各位對volatile(揮發性的)這個字陌不陌生? 我相信大家在一些程式或多或少都看
-過這個字眼, 但是究竟要在何種場合用它呢?
-.當然一定是有需要, C/C++才會有這個保留字, 否則只是增加programmer的困擾而已
-.有2兩個場合(I/O & multithread program), 供各位參考!
-.請大家check自己的程式中(尤其是第2個場合), 若有的話請記得加上volatile
-
+使用時機有兩個場合(I/O & multithread program)
 1. I/O, 假設有一程式片斷如下
 
 U8 *pPort;
