@@ -1,3 +1,112 @@
+# 基本指標判讀:
+```
+int a; // 一個整型數
+int *a; // 一個指向整數的指標
+int **a; // 一個指向指標的指標，它指向的指標是指向一個整型數
+int a[10]; // 一個有10個整數型的陣列
+int *a[10]; // 一個有10個指標的陣列，該指標是指向一個整數型的
+int (*a)[10]; // 一個指向有10個整數型陣列的指標
+int (*a)(int); // 一個指向函數的指標，該函數有一個整數型參數並返回一個整數
+int (*a[10])(int); // 一個有10個指標的陣列，該指標指向一個函數，該函數有一個整數型參數並返回一個整數
+
+注意宣告兩個指標時不能寫做 int* a, b; 因為前式等價於 int* a; int b;。連續宣告兩個指標用 int *a, *b;
+```
+  
+  
+  
+  
+# 指標與其他關鍵字混用
+```
+一樣右讀到左，例如：
+	const int * foo; // 一個 pointer，指向 const int 變數。
+	int const * foo; // 一個 pointer，指向 const int 變數。
+	int * const foo; // 一個 const pointer，指向 int 變數。
+	int const * const foo; // 一個 const pointer，指向 const int 變數。	
+關鍵字 volatile 等等判讀方式相同。
+```
+  
+    
+  
+# 變數範圍和生命周期（關鍵字 static）
+```
+1. local 變數 : local 變數僅活在該函式內，存放位置在 stack 或 heap 記憶體中。
+
+2. static 變數 : static 變數生命周期 (life time) 跟程式一樣長，而範圍 (scope) 則維持不變，即在宣告的函式之外仍無法存取 static 變數。
+
+3. global 變數 : 所有區段皆可使用此變數。
+```
+```
+Stack : 存放函數的參數、區域變數等，由空間配置系統自行產生與回收。(會稱作 stack 是由於其配置遵守 LIFO)
+Heap : 一般由程式設計師分配釋放，執行時才會知道配置大小，如 malloc/new 和 free/delete。(注意其資料結構不是 DS 中的 heap 而是 link-list)
+Global : 包含 BSS (未初始化的靜態變數)、data section (全域變數、靜態變數) 和 text/code (常數字元)。
+```
+> ![](../img/image4.png)
+> ![](../img/image5.png)    
+
+
+# call by value, call by reference
+```
+1. call by value : 最常見的函式寫法，呼叫者和被呼叫者的變數各自佔有記憶體，將參數複製再傳給函式。
+
+2. call by reference : 呼叫者和被呼叫者的變數使用相同的記憶體位址，因此在被呼叫函式中改變變數時，變動結果會保留。(C++ 才有，寫法為 type func(type &var) { ... })
+```
+  
+    
+      
+# 關鍵字 const
+```
+const 通常表示只可讀取不可寫入的變數，常用來宣告常數。使用 const 有以下好處：
+	1.提升程式碼可讀性
+	2.使編譯器保護那些不希望被改變的參數
+	3.給優化器一些附加的資訊	
+```
+   
+      
+        
+# const vs #define
+```
+編譯器處理方式 : define 在預處理階段展開；const 在編譯階段使用。
+類型和安全檢查 : const 會在編譯階段會執行類型檢查，define 則不會。
+存儲方式 : define 直接展開不會分配記憶體，const 則會在記憶體中分配。
+```
+  
+    
+      
+# 巨集 #define
+> ![](../img/image6.png)   
+     
+       
+# 引入防護和條件編譯
+> ![](../img/image7.png)
+  
+    
+      
+# 關鍵字 inline
+```
+inline 可以將修飾的函式設為行內函式，即像巨集 (define) 一樣將該函式展開編譯，用來加速執行速度。
+
+inline 和 #define 的差別在於：
+inline 函數只對參數進行一次計算，避免了部分巨集易產生的錯誤。
+inline 函數的參數類型被檢查，並進行必要的型態轉換。
+巨集定義盡量不使用於複雜的函數
+用 inline 後編譯器不一定會實作，僅為建議。
+```
+
+    
+      
+# 關鍵字 volatile
+```
+由於嵌入式系統常處理 I/O、中斷、即時操作系統 (RTOS) 相關的問題，因此在嵌入式系統開發中 volatile 尤為重要。被 volatile 修飾的變數代表它可能會被不預期的更新，因此告知編譯器不對它涉及的地方做最佳化，並在每次操作它的時候都讀取該變數實體位址上最新的值，而不是讀取暫存器的值。
+
+volatile 常見的應用：
+
+修飾中斷處理程式中 (ISR) 中可能被修改的全域變數。
+修飾多執行緒 (multi-threaded) 的全域變數。
+設備的硬體暫存器 (如狀態暫存器)
+```
+
+      
+        
 # 寫出將會印出的兩行字串
 > ![](../img/image1.jpg)
 ```
@@ -181,6 +290,7 @@ printf("size of BYTE = %d\n
   	,sizeof(char));
 ```
 ```
+A:
 size of BYTE = 1
 size of float = 4
 size of unsigned int = 4
@@ -238,8 +348,8 @@ return 0;
 } 
 ```
 ```
-
- strAry=This is string # 字串陣列 char[] ="..." 會自動加上 NULL 到結尾.  
+A:
+ strAry=This is string # 字串陣列 char[] ="..." 會自動加上 NULL 到結尾.  
  aryPtr=This is string # 同上, 只是把 aryPtr 指標指向 strAry 的位置. strAry 本身也是個指標.  
  sizeof(aryPtr)=4 # 指標的大小根據系統是 32bit (4byte) 或是 64bit(8bypte) 有所不同.  
  sizeof(*aryPtr)=1 # char 的大小為 1 byte.  
