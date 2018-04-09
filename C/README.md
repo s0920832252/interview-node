@@ -33,11 +33,11 @@ int ownstrcmp(char a[], char b[])
    return  ( a[i] < b[i]) ? 1 : -1; 
 }   
 ```
-
-
-
+  
+  
+  
 # 請問以下何者為不合法的變數名稱?
-##### 1. _aB        2. AB        3. 2ab        4. A_B        5. Black        6.  Break
+#### 1. _aB        2. AB        3. 2ab        4. A_B        5. Black        6.  Break
 ```
 Ans: 3
 (Note : 第六選項  "Break" 因為是大寫 B 與 "break"被視為兩個不同的變數，故雖不建議使用，但依然被視為合法變數)
@@ -45,8 +45,9 @@ Ans: 3
 2. "保留字" 不可為變數名稱 如: goto 、   break 、   case ....等等
 ```
 > ![](../img/umage3.png)
-
-
+  
+    
+  
 # Compare array and list
 ```
 std::array is just a class version of the classic C array. 
@@ -86,14 +87,13 @@ function：static member function不屬於任何一個實體，也是不需要�
 
 
 # C/C++中的volatile使用時機?
-使用時機有兩個場合(I/O & multithread program)
-1. I/O, 假設有一程式片斷如下
-
+### A: 使用時機有兩個場合(I/O & multithread program)
+> 1. I/O
+```
+假設有一程式片斷如下
 U8 *pPort;
 U8 i, j, k;
-
 pPort = (U8 *)0x800000;
-
 i = *pPort; 
 j = *pPort; 
 k = *pPort; 
@@ -114,8 +114,10 @@ i = *pPort;
 j = *pPort; 
 k = *pPort; 
 此三列程式所產生的code, 會真正地從pPort讀取三次, 從而產生正確的結果
+```
 
-2. Global variables in Multithread program 
+> 2. Global variables in Multithread program 
+```
 => 這是在撰寫multithread program時最容易被忽略的一部份
 => 此原因所造成的bug通常相當難解決(因為不穩定)
 
@@ -125,14 +127,14 @@ thread 1: thread 2:
 ... .... 
 int gData; extern int gData; 
 
-while (1) int i, j, k; 
-{ 
-.... for (i = 0; i < 1000; i++)
-gData = rand(); { 
-..... /* A */
-} j = gData; 
-.... 
-.... } 
+while (1) {
+	int i, j, k; 
+	for (i = 0; i < 1000; i++)
+	gData = rand(); { 
+	/* A */
+	} 
+	j = gData; 
+} 
 
 在thread 2的for loop中, 聰明的compiler看到gData的值, 每次都重新從memory load到register, 
 實在沒效率, 因此會產生如下的code(注意,tmp也可以更進一步的用register取代):
@@ -159,35 +161,32 @@ volatile int gData;
 extern int gData; 
 改為
 extern volatile int gData; 
+```
 
-
-5.
-printf("size of BYTE = %d\n \
-
-  size of float = %d\n \
-   size of unsigned int = %d\n \
-  size of int = %d\n \
-  size of double = %d\n \
-  size of unsigned char = %d\n \
-  size of char = %d\n" 
-  ,sizeof(BYTE)
-  ,sizeof(float)
-  ,sizeof(unsigned int)
-  ,sizeof(int)
-  ,sizeof(double)
-  ,sizeof(unsigned char)
-  ,sizeof(char));
-
-A:
+# 以下輸出為何?
+printf("size of BYTE = %d\n
+  	size of float = %d\n
+   	size of unsigned int = %d\n
+  	size of int = %d\n
+  	size of double = %d\n
+  	size of unsigned char = %d\n
+  	size of char = %d\n" 
+  	,sizeof(BYTE)
+  	,sizeof(float)
+  	,sizeof(unsigned int)
+  	,sizeof(int)
+  	,sizeof(double)
+  	,sizeof(unsigned char)
+  	,sizeof(char));
+```
 size of BYTE = 1
 size of float = 4
 size of unsigned int = 4
 size of int = 4
 size of double = 8
 size of unsigned char = 1
-size of char = 1
-				
-
+size of char = 1				
+```
 型別           | 符號位元  | 位元長度 | 表示方法 | 數值範圍
 ---------------|:--------:|--------:| -------:|------------------------
 整數    | 有    |  16或32  |    int | -2147483648 ~ 2147483647
@@ -203,12 +202,12 @@ size of char = 1
 浮點數   | 有    |  32 |  float | 10^-38~10^38
    .     |  .     | 64 |  double | 10^-308~10^308
 字元    | 有 |  8 |  char | -128 ~ 127
-
-
-
-6.
-請試著寫出下面代碼的輸出:
-
+   
+  
+  
+  
+# 請試著寫出下面代碼的輸出:
+```
 view plaincopy to clipboardprint?
 #include 
 #include 
@@ -235,8 +234,8 @@ printf("\t[Line12] *intPtr+1='%c'\n", *intPtr+1);
 printf("\t[Line13] *(intPtr+1)='%c'\n", *(intPtr+1)); 
 return 0; 
 } 
-
-Sol:
+```
+```
 
  strAry=This is string # 字串陣列 char[] ="..." 會自動加上 NULL 到結尾.  
  aryPtr=This is string # 同上, 只是把 aryPtr 指標指向 strAry 的位置. strAry 本身也是個指標.  
@@ -251,4 +250,4 @@ Sol:
  *intPtr='T' # 指向字串中第一個字元 'T'.  
  *intPtr+1='U' # 同 Line6  
  *(intPtr+1)=' ' # 因為 指標類型為 int, 故移動一個位置為 4 byte, 所以指向第 0+4 =4 位置上的字元, 即字串的第五個字元 (從 0 開始).  
-
+```
