@@ -109,37 +109,37 @@ volatile 常見的應用：
   
   
 # 記憶體複製
-> ![](../img/image8.jpg)  
+> ![](../img/image8.png)  
   
   
     
 # 字串複製
-> ![](../img/image9.jpg)
+> ![](../img/image9.png)
   
   
   
 # 結構 struct  
-> ![](../img/image10.jpg)
+> ![](../img/image10.png)
   
   
   
 # 重新定義型態名稱 typedef 
-> ![](../img/image11.jpg)
+> ![](../img/image11.png)
   
   
   
 # 列舉 enum
-> ![](../img/image12.jpg)
+> ![](../img/image12.png)
   
   
   
 # 共用結構 union
-> ![](../img/image13.jpg)
+> ![](../img/image13.png)
   
       
         
 # 寫出將會印出的兩行字串
-> ![](../img/image1.jpg)
+> ![](../img/image1.png)
 ```
 答案為:
 第一行字串為 : 0113234
