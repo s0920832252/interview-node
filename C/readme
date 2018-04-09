@@ -1,4 +1,4 @@
-###write your own strcmp
+### write your own strcmp
 int ownstrcmp(char a[], char b[])
 {
    int i = 0;
