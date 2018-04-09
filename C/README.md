@@ -1,15 +1,17 @@
 1. write your own strcmp 
-' int ownstrcmp(char a[], char b[])
-{
-   int i = 0;
-   while( a[i] == b[i] )  
-   {
-      if( a[i] == '\0' ) 
-        return 0;
-      ++i;
-   }
-   return  ( a[i] < b[i]) ? 1 : -1;
-}'
+``` 
+int ownstrcmp(char a[], char b[])  
+{   
+   int i = 0; 
+   while( a[i] == b[i] )   
+   { 
+      if( a[i] == '\0' )  
+        return 0; 
+      ++i; 
+   } 
+   return  ( a[i] < b[i]) ? 1 : -1; 
+}   
+```
 
 2. Compare array and list
 std::array is just a class version of the classic C array. That means its size is fixed at compile time and it will be allocated as a single chunk (e.g. taking space on the stack). The advantage it has is slightly better performance because there is no indirection between the object and the arrayed data.  
