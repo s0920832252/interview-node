@@ -1,5 +1,4 @@
-1. write your own strcmp 
-
+# write your own strcmp 
 ``` 
 int ownstrcmp(char a[], char b[])  
 {   
@@ -14,8 +13,7 @@ int ownstrcmp(char a[], char b[])
 }   
 ```
 
-2. Compare array and list
-
+# Compare array and list
 ```
 std::array is just a class version of the classic C array. 
 That means its size is fixed at compile time and it will be allocated as a single chunk 
@@ -28,8 +26,8 @@ get to the arrayed data... But in exchange for that, they can be resized and the
 trivial amount of stack space no matter how large they are.
 ```
 
-4. Explain Static and volatile  
-# Static:
+# Explain Static and volatile  
+### Static:
 
 (1) 修飾檔案中的global variable：
 > 使這個變數只有在本檔案中才可以被使用，相同專案中的其他檔案看不到它的存在。補：放在function前也有一樣的作用。
@@ -44,14 +42,11 @@ trivial amount of stack space no matter how large they are.
 function：static member function不屬於任何一個實體，也是不需要實體就可呼叫，
 >> 但它只能操作static member variables而已。他們都透過 :: 運算子來呼叫，表示屬於某一個class但不屬於任何實體。 ex. A::x 也可以透過實體用
 
-# Volatile:
+### Volatile:
 
 > 被volatile修飾的變數代表它的值有可能因為編譯器不知道的因素修改，所以告訴編譯器不要對它涉及的地方做最佳化，並在每次操作它的時候都去讀取該變數實體位址上最新的值，而不是讀取CPU暫存器上的值，一般的變數可能因為剛剛讀取過而放在CPU暫存器上使動作變快。
 
->> 例子：
->> (1) 硬體暫存器，如狀態暫存器。
->> (2) 多執行緒所共用的全域變數。
->> (3) 中斷服務函式 (Interrupt Service Rountie，ISR)所使用的全域變數。
+>> 例子：(1) 硬體暫存器，如狀態暫存器。(2) 多執行緒所共用的全域變數。(3) 中斷服務函式 (Interrupt Service Rountie，ISR)所使用的全域變數。
 
 囧~ 我只能了解多執行緒的情況，其他兩個例子都沒概念。
 
