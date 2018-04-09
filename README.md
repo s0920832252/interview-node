@@ -12,7 +12,7 @@
 [面試常見程式考題-程式實做](http://emn178.pixnet.net/blog/post/92389195-%E9%9D%A2%E8%A9%A6%E5%B8%B8%E8%A6%8B%E7%A8%8B%E5%BC%8F%E8%80%83%E9%A1%8C-%E7%A8%8B%E5%BC%8F%E5%AF%A6%E5%81%9A)  
 
 
-[考前三分鐘系列 (二)](hhttp://dummyh.pixnet.net/blog/category/725962)  
+[考前三分鐘系列](hhttp://dummyh.pixnet.net/blog/category/725962)  
 
 
 [[C/C++] 常考 題目](http://leeweiyutoro.blogspot.tw/2014/12/cc.html)  
