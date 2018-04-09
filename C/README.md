@@ -1,3 +1,6 @@
+# 寫出將會印出的兩行字串
+![](../img/image1.jpg)
+
 # write your own strcmp 
 ``` 
 int ownstrcmp(char a[], char b[])  
