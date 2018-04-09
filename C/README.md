@@ -18,26 +18,24 @@ int ownstrcmp(char a[], char b[])
 
 ```
 std::array is just a class version of the classic C array. 
-That means its size is fixed at compile time and it will be allocated as a single chunk (e.g. taking space on the stack).
-The advantage it has is slightly better performance because there is no indirection between the object and the arrayed data.  
+That means its size is fixed at compile time and it will be allocated as a single chunk 
+(e.g. taking space on the stack). The advantage it has is slightly better performance because there 
+is no indirection between the object and the arrayed data.  
 
 std::vector is a small class containing pointers into the heap. (So when you allocate astd::vector, 
-it always calls new.) They are slightly slower to access because those pointers have to be chased to get to the arrayed data... 
-But in exchange for that, they can be resized and they only take a trivial amount of stack space no matter how large they are.
+it always calls new.) They are slightly slower to access because those pointers have to be chased to 
+get to the arrayed data... But in exchange for that, they can be resized and they only take a 
+trivial amount of stack space no matter how large they are.
 ```
 
 3. Explain Static and volatile
 #Static:
 
 (1) 修飾檔案中的global variable：
-```
-使這個變數只有在本檔案中才可以被使用，相同專案中的其他檔案看不到它的存在。
-補：放在function前也有一樣的作用。
-```
+> 使這個變數只有在本檔案中才可以被使用，相同專案中的其他檔案看不到它的存在。補：放在function前也有一樣的作用。
+
 (2) 修飾function中的local variable：
-> 此變數一旦經過初始化就會一直存在直到程式結束，跳出function時它也會保持當下的值，
-> ex. 可用來計算同一個function被呼叫的次數。
-> 只會被初始化一次，並且只有進入function中才看得到這個變數 !!
+> 此變數一旦經過初始化就會一直存在直到程式結束，跳出function時它也會保持當下的值，ex. 可用來計算同一個function被呼叫的次數。只會被初始化一次，並且只有進入function中才看得到這個變數 !!
 
 (3) 修飾class中的member variable和function：
 > variable：會使同一個class的所有實體共用同一個member variable，或者說這個member variable在同一個class的所有實體擁有相同的值。
