@@ -131,72 +131,106 @@ P0~Pn形成Circular waiting
 ```	
 
 # Context switch:
-A context switch (also sometimes referred to as 
-a process switch or a task switch) is 
-the switching of the CPU  
-from one process or thread to another.
-
-中斷（Interrupt）：
-屬於非同步發生的事件（event），
-在任何時間都可能發生且與處理器（processer）在執行的東西毫無關連，
-通常它由輸出入裝置（I/O devices），
-處理計時器，或時序（timers）產生
-
-陷阱（EXception or Trap）：
-屬於同步狀態，通常由執行某一特別的指令。
-陷阱（Trap或exception）可以藉由執行相同資料及狀態下的程式而重複產生。
-其例有無效記憶體存取或除以零。
-
-輪詢（polling）：
-中斷發生時，CPU做輪詢的動作，去查詢所有I/O裝置看誰需要服務。
-
-interrupt發生後，OS的處理程序
+```
+	A context switch (also sometimes referred to as 
+	a process switch or a task switch) is 
+	the switching of the CPU  
+	from one process or thread to another.
+```
+  
+  
+  
+# 中斷（Interrupt）：
+```
+	屬於非同步發生的事件（event），
+	在任何時間都可能發生且與處理器（processer）在執行的東西毫無關連，
+	通常它由輸出入裝置（I/O devices），
+	處理計時器，或時序（timers）產生
+```
+  
+  
+  
+# 陷阱（EXception or Trap）：
+```
+	屬於同步狀態，通常由執行某一特別的指令。
+	陷阱（Trap或exception）可以藉由執行相同資料及狀態下的程式而重複產生。
+	其例有無效記憶體存取或除以零。
+```
+  
+  
+  
+# a輪詢（polling）：
+```
+	中斷發生時，CPU做輪詢的動作，去查詢所有I/O裝置看誰需要服務。
+```
+  
+  
+  
+  
+# interrupt發生後，OS的處理程序
+```
 (在monitor area內會存放interrupt vector及各種ISR):
--- Step：
---1 暫停目前process的執行，並保存當時執行狀況
---2 根據interrupt ID查詢interrupt vector，
-    取出對應的Interrupt Service Routine(ISR)起始位址
---3 Jump to ISR的initial address，執行該ISR
---4 ISR complete
---5 OS恢復原先中斷前的process執行
-
-Interrupt的種類：
---1. External interrupt(HW) : CPU以外的周邊元件所發出的, 
-     eg. I/O complete、I/O error、machine check
---2. Internal interrupt(HW) : CPU本身所引發的, 
-     eg. stack overflow、illegal command(非法指令執行)、
-         divided by zero(除以0)...
---3. Software interrupt : 當user program執行時，
-     若需要OS提供服務，
-     則發出此類中斷通知OS執行對應的service routine, 
-     eg. system call、trap
-
-Interrupt與Trap之比較:
-Interrupt：Hardware generated interrupt, 
-eg. I/O device發出"I/O complete"中斷
-Trap：Software generated interrupt 
-用途：user program需要OS提供Service時發出, 
-Catch up arithematic error, eg. Divide-by-Zero
-
+	-- Step：
+	--1 暫停目前process的執行，並保存當時執行狀況
+	--2 根據interrupt ID查詢interrupt vector，
+    		取出對應的Interrupt Service Routine(ISR)起始位址
+	--3 Jump to ISR的initial address，執行該ISR
+	--4 ISR complete
+	--5 OS恢復原先中斷前的process執行
+```
+  
+  
+    
+# Interrupt的種類：
+```
+	--1. External interrupt(HW) : CPU以外的周邊元件所發出的, 
+     		eg. I/O complete、I/O error、machine check
+	--2. Internal interrupt(HW) : CPU本身所引發的, 
+     		eg. stack overflow、illegal command(非法指令執行)、
+         	divided by zero(除以0)...
+	--3. Software interrupt : 當user program執行時，
+     		若需要OS提供服務，則發出此類中斷通知OS執行對應的service routine, 
+     		eg. system call、trap
+```
+  
+  
+  
+  
+# Interrupt與Trap之比較:
+```
+	Interrupt：Hardware generated interrupt, 
+	eg. I/O device發出"I/O complete"中斷
+	Trap：Software generated interrupt 	
+	用途：user program需要OS提供Service時發出, 
+	Catch up arithematic error, eg. Divide-by-Zero
+```
  
-DMA（Direct Memory Access）:
-高速地將 I/O 資料傳送到記憶體，而不被CPU干涉。
--- Used for high-speed I/O devices 
-   able to transmit information at close to memory speeds.
--- Device controller transfers blocks of data 
-   from buffer storage directly to main memory 
-   without CPU intervention.
--- Only on interrupt is generated per block 
-   rather than the one interrupt per byte.
-
-
-Call Back Function :
-簡單的說，如果你使用了某個function，
-那麼你就是『call』了一個function。
-如果系統或是函式是要求你給一個function pointer，
-這個function pointer指到一個實際的函式
-(多半這個函式是你自己寫的)。
-然後它會在適當的時間呼叫此function，
-則此function就是所謂的 callback function。
-因為這個function是被『callback』了。   
-	
+  
+    
+# DMA（Direct Memory Access）:
+```
+	高速地將 I/O 資料傳送到記憶體，而不被CPU干涉。
+	-- Used for high-speed I/O devices 
+   		able to transmit information at close to memory speeds.
+	-- Device controller transfers blocks of data 
+   		from buffer storage directly to main memory 
+   		without CPU intervention.
+	-- Only on interrupt is generated per block 
+   		rather than the one interrupt per byte.
+```
+  
+  
+    
+# Call Back Function :
+```
+	簡單的說，如果你使用了某個function，
+	那麼你就是『call』了一個function。
+	如果系統或是函式是要求你給一個function pointer，
+	這個function pointer指到一個實際的函式
+	(多半這個函式是你自己寫的)。
+	然後它會在適當的時間呼叫此function，
+	則此function就是所謂的 callback function。
+	因為這個function是被『callback』了。   
+```
+  
+    
