@@ -54,6 +54,37 @@ int nc(int n){
 }
 ```
 
+# write a code that check the input is a multiple of 3 or not without using division or mod
+```
+while n > 0:
+    n -= 3
+while n < 0:
+    n += 3
+return n == 0
+```
+
+# 不使用暫存變數交換兩個變數 ( Swap two variables without using a temporary variable )
+```
+第一種方式是使用 XOR 運算： 
+a = a ^ b
+b = a ^ b
+a = a ^ b
+
+第二種是使用加法與減法：
+a = a + b
+b = a - b
+a = a - b
+
+第三種是使用乘法與除法：
+a = a * b
+b = a / b
+a = a / b
+
+這三種方式作用都相同，
+但是第二種與第三種都可能會有溢位（overflow）的問題，
+所以最佳的解法是使用第一種 XOR 運算。
+```
+
 
 # Explain process and thread
 ```
@@ -233,4 +264,11 @@ P0~Pn形成Circular waiting
 	因為這個function是被『callback』了。   
 ```
   
-    
+#  何謂DLL?
+```
+Dynamic Link Library(動態連結檔) 
+就是將一些function封裝起來,以達到資源共用、程式共用的目的, 一方面也能節省記憶體空間...
+```
+
+# 解釋 write back 與 write through
+![](../img/image16.png)
